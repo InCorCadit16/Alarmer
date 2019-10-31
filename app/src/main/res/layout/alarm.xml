@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:baselineAligned="false"
+    android:layout_marginBottom="8dp"
+    android:paddingStart="4dp"
+    android:translationZ="15dp"
+    android:background="@color/colorPrimaryDark">
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="16:20"
+        android:textSize="42sp"
+        android:layout_marginTop="15dp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/remains"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="осталось 5 ч 40 мин"
+        android:textSize="12sp"
+        android:layout_marginTop="64dp"
+        android:layout_marginStart="4dp"
+        android:textColor="#DDD"/>
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_toEndOf="@id/time"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:layout_marginStart="8dp"
+        android:lines="1"
+        tools:text="Сразу вставай!!!" />
+
+    <Switch
+        android:id="@+id/switcher"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:paddingEnd="24dp"
+        android:paddingStart="24dp"
+        android:backgroundTint="#000"/>
+
+</RelativeLayout>

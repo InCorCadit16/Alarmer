@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#455a64</color>
+    <color name="disabledOnly">#78909c</color>
+    <color name="colorPrimaryDark">#37474f</color>
+    <color name="colorAccent">#263238</color>-->
+    <color name="colorPrimary">#222222</color>
+    <color name="colorBar">#292929</color>
+    <color name="disabledOnly">#DDDDDD</color>
+    <color name="colorPrimaryDark">#444444</color>
+    <color name="colorAccent">#000000</color>
+</resources>

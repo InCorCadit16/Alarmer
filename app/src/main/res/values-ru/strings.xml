@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Alarmer</string>
+    <string name="add_signal">Добавьте сигнал %d</string>
+    <string name="already_chosen">Вы уже выбрали этот сигнал</string>
+    <string name="everyday">Каждый день</string>
+    <string name="h">%d ч</string>
+    <string name="label">Метка</string>
+    <string name="m">%d м</string>
+    <string name="only_on_weekends">В выходные</string>
+    <string name="only_on_workdays">По будням</string>
+    <string name="only_once">1 раз</string>
+    <string name="random">Случайный порядок</string>
+    <string name="remains">Осталось</string>
+    <string name="repeat">Повторять</string>
+    <string name="signals">Сигналы</string>
+    <string name="some_days">Иногда</string>
+    <string name="vibration">Вибрация</string>
+    <string name="work_mode">Режим работы</string>
+    <string name="default_label">Мой будильник</string>
+    <string name="delete">Удалить</string>
+    <string name="disable">Отключить</string>
+    <string name="enable">Включить</string>
+    <string name="d">%d д</string>
+    <string name="ten_more_minutes">Ещё 10 мин.</string>
+    <string name="turn_off">Выключить</string>
+    <string name="error_message">Ошибка: не сработал будильник из Alarmer</string>
+</resources>

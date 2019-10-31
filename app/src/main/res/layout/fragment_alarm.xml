@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="70dp">
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="7:20"
+            android:textSize="60sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:textColor="#fff"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="27.09, Пятница"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="#fff"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_margin="8dp"
+            android:text="@string/work_mode"
+            android:textColor="#fff"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:translationZ="15dp"
+            android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/repeat_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textSize="18sp"
+                android:text="@string/only_once"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#fff"/>
+
+            <CheckBox
+                android:id="@+id/repeat_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2.5"
+                android:paddingStart="2dp"
+                android:paddingEnd="8dp"
+                android:text="@string/repeat"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#fff"
+                android:buttonTint="#fff" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/weekdays"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:padding="8dp"
+            android:translationZ="15dp"
+            android:background="@color/colorAccent"
+            android:layout_marginBottom="2dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="15dp"
+                android:layout_height="39dp"
+                android:text="Mn"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/weekday"
+                android:textColor="@color/colorAccent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="15dp"
+                android:layout_height="39dp"
+                android:background="@drawable/weekday"
+                android:text="Tu"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/colorAccent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="15dp"
+                android:layout_height="39dp"
+                android:background="@drawable/weekday"
+                android:text="We"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/colorAccent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="15dp"
+                android:layout_height="39dp"
+                android:background="@drawable/weekday"
+                android:text="Th"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/colorAccent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="15dp"
+                android:layout_height="39dp"
+                android:background="@drawable/weekday"
+                android:text="Fr"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/colorAccent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="15dp"
+                android:layout_height="39dp"
+                android:background="@drawable/weekday"
+                android:text="St"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/colorAccent"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="15dp"
+                android:layout_height="39dp"
+                android:background="@drawable/weekday"
+                android:text="Su"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/colorAccent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:translationZ="15dp" >
+
+            <CheckBox
+                android:id="@+id/vibrate_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingStart="2dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:layout_marginBottom="2dp"
+                android:text="@string/vibration"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#fff"
+                android:buttonTint="#fff" />
+
+            <CheckBox
+                android:id="@+id/random_order_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/random"
+                android:paddingStart="2dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#fff"
+                android:layout_marginBottom="2dp"
+                android:buttonTint="#fff" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_margin="8dp"
+            android:text="@string/signals"
+            android:textColor="#fff"/>
+
+        <LinearLayout
+            android:id="@+id/signals_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/add_signal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:src="@drawable/add"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_margin="8dp"
+            android:text="@string/label"
+            android:textColor="#fff"/>
+
+        <EditText
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:backgroundTint="@android:color/white"
+            android:textColor="#fff" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:translationZ="30dp">
+
+        <Button
+            android:id="@+id/on_off_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:translationZ="5dp"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:text="@string/disable"
+            android:textColor="#fff"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:layout_marginEnd="1dp"/>
+
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:translationZ="5dp"
+            android:background="@color/colorAccent"
+            android:text="@string/delete"
+            android:textColor="#fff"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:layout_marginStart="1dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

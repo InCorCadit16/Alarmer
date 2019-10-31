@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/rate_app"
+        android:title="Rate app"
+        android:icon="@drawable/ic_rate"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/source_code"
+        android:title="Source code"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/contribute"
+        android:title="Contribute"
+        app:showAsAction="never"/>
+
+</menu>

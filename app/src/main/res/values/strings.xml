@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Alarmer</string>
+    <string name="only_once">Only once</string>
+    <string name="everyday">Everyday</string>
+    <string name="only_on_workdays">Only on workdays</string>
+    <string name="only_on_weekends">Only on weekends</string>
+    <string name="some_days">Some days</string>
+    <string name="remains">Remains</string>
+    <string name="h">%d h</string>
+    <string name="d">%d d</string>
+    <string name="m">%d m</string>
+    <string name="add_signal">Add signal %d</string>
+    <string name="already_chosen">You have already chosen this signal</string>
+    <string name="work_mode">Work mode:</string>
+    <string name="repeat">Repeat</string>
+    <string name="vibration">Vibration</string>
+    <string name="random">Random order</string>
+    <string name="signals">Signals:</string>
+    <string name="label">Label:</string>
+    <string name="default_label">My alarm</string>
+    <string name="enable">Enable</string>
+    <string name="disable">Disable</string>
+    <string name="delete">Delete</string>
+    <string name="turn_off">Turn off</string>
+    <string name="ten_more_minutes">10 more minutes</string>
+    <string name="error_message">An error prevented showing alarm from Alarmer</string>
+</resources>
