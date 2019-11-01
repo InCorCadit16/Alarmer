@@ -21,11 +21,11 @@ import java.util.concurrent.TimeUnit;
 
 public class Alarm {
     // repeat modes
-    static final int REPEAT_ONCE = R.string.only_once;
-    static final int REPEAT_EVERYDAY = R.string.everyday;
-    static final int REPEAT_WORKDAYS = R.string.only_on_workdays;
-    static final int REPEAT_WEEKENDS = R.string.only_on_weekends;
-    static final int REPEAT_CUSTOM = R.string.some_days;
+    public static final int REPEAT_ONCE = R.string.only_once;
+    public static final int REPEAT_EVERYDAY = R.string.everyday;
+    public static final int REPEAT_WORKDAYS = R.string.only_on_workdays;
+    public static final int REPEAT_WEEKENDS = R.string.only_on_weekends;
+    public static final int REPEAT_CUSTOM = R.string.some_days;
 
     private final UUID id;
     private PendingIntent pi;

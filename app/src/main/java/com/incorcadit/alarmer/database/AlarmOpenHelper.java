@@ -2,7 +2,9 @@ package com.incorcadit.alarmer.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class AlarmOpenHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
@@ -21,10 +23,10 @@ public class AlarmOpenHelper extends SQLiteOpenHelper {
                 AlarmDBScheme.cols.DATE + ", " +
                 AlarmDBScheme.cols.LABEL + ", " +
                 AlarmDBScheme.cols.ISON + ", " +
-                AlarmDBScheme.cols.CURSONG + " INT, " +
+                AlarmDBScheme.cols.CURSONG + ", " +
                 AlarmDBScheme.cols.ISRANDOM + ", " +
                 AlarmDBScheme.cols.ISVIBRATING + ", " +
-                AlarmDBScheme.cols.REPEATMODE + " INT, " +
+                AlarmDBScheme.cols.REPEATMODE + ", " +
                 AlarmDBScheme.cols.SOURCES + " TEXT, " +
                 AlarmDBScheme.cols.WEEKDAYS +
                 ")");
@@ -32,6 +34,11 @@ public class AlarmOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onOpen(SQLiteDatabase db) {
+        try {
+            db.execSQL("alter table " + AlarmDBScheme.NAME + " add column " + AlarmDBScheme.cols.CURSONG);
+        } catch (SQLiteException se) {
+            Log.e(AlarmDBScheme.NAME, se.getLocalizedMessage());
+        }
         super.onOpen(db);
     }
 

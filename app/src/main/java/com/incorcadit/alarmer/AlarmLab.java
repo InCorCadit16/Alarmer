@@ -91,7 +91,17 @@ public class AlarmLab {
         values.put(AlarmDBScheme.cols.ISON, alarm.isOn()?1:0);
         values.put(AlarmDBScheme.cols.ISRANDOM, alarm.isRandom()?1:0);
         values.put(AlarmDBScheme.cols.ISVIBRATING, alarm.isVibrating()?1:0);
-        values.put(AlarmDBScheme.cols.REPEATMODE, alarm.getRepeatMode());
+
+        int val;
+        switch (alarm.getRepeatMode()) {
+            case Alarm.REPEAT_ONCE: val = 1; break;
+            case Alarm.REPEAT_EVERYDAY: val = 2; break;
+            case Alarm.REPEAT_WORKDAYS: val = 3; break;
+            case Alarm.REPEAT_WEEKENDS: val = 4; break;
+            default: val = 5;
+        }
+        values.put(AlarmDBScheme.cols.REPEATMODE, val);
+
         values.put(AlarmDBScheme.cols.CURSONG, alarm.getCurSong());
         values.put(AlarmDBScheme.cols.SOURCES, Arrays.toString(alarm.getSource().toArray()).replace("[","").replace("]",""));
         values.put(AlarmDBScheme.cols.WEEKDAYS, Arrays.toString(alarm.getRepeatDays().toArray()).replace("[","").replace("]",""));

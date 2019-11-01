@@ -35,7 +35,16 @@ public class AlarmCursorWrapper extends CursorWrapper {
         String weekdaysString = getString(getColumnIndex(AlarmDBScheme.cols.WEEKDAYS));
 
         Alarm alarm = new Alarm(new Date(date), UUID.fromString(uuidString));
+
+        switch (repeatMode) {
+            case 1: repeatMode = Alarm.REPEAT_ONCE; break;
+            case 2: repeatMode = Alarm.REPEAT_EVERYDAY; break;
+            case 3: repeatMode = Alarm.REPEAT_WORKDAYS; break;
+            case 4: repeatMode = Alarm.REPEAT_WEEKENDS; break;
+            case 5: repeatMode = Alarm.REPEAT_CUSTOM; break;
+        }
         alarm.setRepeatMode(repeatMode);
+
         alarm.setLabel(label);
         alarm.setOnWithoutPi(isOn != 0);
         alarm.setRandom(isRandom != 0);
