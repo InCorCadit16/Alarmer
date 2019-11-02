@@ -61,7 +61,6 @@ public class WakeupActivity extends AppCompatActivity {
             mAlarmLab.updateAlarm(mAlarm);
         }
         ringtone = RingtoneManager.getRingtone(this,Uri.parse(mAlarm.getSource().get(index)));
-        ringtone.setLooping(true);
         ringtone.play();
 
         // Set up views
@@ -77,38 +76,7 @@ public class WakeupActivity extends AppCompatActivity {
             if (mAlarm.getRepeatMode() == Alarm.REPEAT_ONCE) {
                 mAlarm.setOn(false, WakeupActivity.this);
             } else {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(new Date());
-                int needDay = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-                boolean needCycle = true;
-                for (int i = needDay + 1; i < 8; i++) {
-                    if (mAlarm.getRepeatDays().contains(i)) {
-                        needDay = i;
-                        needCycle = false;
-                        break;
-                    }
-                }
-
-                if (needCycle) {
-                    for (int i = 1; i <= needDay; i++) {
-                        if (mAlarm.getRepeatDays().contains(i)) {
-                            needDay = i;
-                            break;
-                        }
-                    }
-                }
-
-                int needTimes;
-                if (needDay > calendar.get(Calendar.DAY_OF_WEEK) - 1)
-                    needTimes =  needDay - calendar.get(Calendar.DAY_OF_WEEK) + 1;
-                else
-                    needTimes = needDay + 7 - calendar.get(Calendar.DAY_OF_WEEK) + 1;
-
-                calendar = Calendar.getInstance();
-                calendar.setTime(mAlarm.getTime());
-                calendar.add(Calendar.HOUR,needTimes * 24);
-                mAlarm.setTime(calendar.getTime(), WakeupActivity.this);
-
+                mAlarm.setRightTime(this);
             }
             finishAffinity();
         });
@@ -127,13 +95,21 @@ public class WakeupActivity extends AppCompatActivity {
     private void stopAlarm() {
         ringtone.stop();
 
-        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.cancel();
+        if (mAlarm.isVibrating()) {
+            vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            vibrator.cancel();
+        }
     }
 
     @Override
     protected void onDestroy() {
         stopAlarm();
+        if (mAlarm.getRepeatMode() == Alarm.REPEAT_ONCE) {
+            mAlarm.setOn(false, WakeupActivity.this);
+        } else {
+            mAlarm.setRightTime(this);
+        }
+
         super.onDestroy();
     }
 }

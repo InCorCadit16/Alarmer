@@ -11,11 +11,11 @@ import android.widget.Toast;
 
 import com.incorcadit.alarmer.database.AlarmDBScheme;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -29,15 +29,15 @@ public class Alarm {
 
     private final UUID id;
     private PendingIntent pi;
-    private Date time;
-    private String label = "My alarm";
+    Date time;
+    private String label = "";
     private ArrayList<String> sources;
     private boolean isOn;
     private boolean isVibrating;
     private boolean isRandom;
     private int repeatMode;
     private int curSong;
-    private ArrayList<Integer> repeatDays;
+    private List<Integer> repeatDays;
 
     // Recreate Alarm from database
     public Alarm (Date time, UUID id) {
@@ -67,9 +67,9 @@ public class Alarm {
         this.isRandom = false;
         this.repeatDays = new ArrayList<>();
         this.curSong = 0;
-        this.label = context.getResources().getString(R.string.default_label);
 
-        setPi(context);
+        // TODO: uncomment
+        //setPi(context);
     }
 
     String getTimeString() {
@@ -113,11 +113,11 @@ public class Alarm {
         return id;
     }
 
-    public Date getTime() {
+    Date getTime() {
         return time;
     }
 
-    public void setTime(Date time, Context context) {
+    void setTime(Date time, Context context) {
         this.time = time;
         if (pi != null) AlarmLab.getAlarmLab(context).getAM().cancel(pi);
         setPi(context);
@@ -131,17 +131,17 @@ public class Alarm {
         this.label = label;
     }
 
-    public ArrayList<String> getSource() {
+    ArrayList<String> getSource() {
         return sources;
     }
 
     public void setSource(ArrayList<String> sources) { this.sources = sources; }
 
-    public boolean isOn() {
+    boolean isOn() {
         return isOn;
     }
 
-    public void setOn(boolean on, Context context) {
+    void setOn(boolean on, Context context) {
         isOn = on;
         if (isOn) {
             if (time.getTime() < new Date().getTime()) {
@@ -162,7 +162,7 @@ public class Alarm {
         isOn = on;
     }
 
-    public boolean isVibrating() {
+    boolean isVibrating() {
         return isVibrating;
     }
 
@@ -170,7 +170,7 @@ public class Alarm {
         isVibrating = vibrating;
     }
 
-    public boolean isRandom() {
+    boolean isRandom() {
         return isRandom;
     }
 
@@ -178,7 +178,7 @@ public class Alarm {
         isRandom = random;
     }
 
-    public int getRepeatMode() {
+    int getRepeatMode() {
         return repeatMode;
     }
 
@@ -186,11 +186,11 @@ public class Alarm {
         this.repeatMode = repeatMode;
     }
 
-    public ArrayList<Integer> getRepeatDays() {
+    List<Integer> getRepeatDays() {
         return repeatDays;
     }
 
-    public void setRepeatDays(ArrayList<Integer> repeatDays) {
+    public void setRepeatDays(List<Integer> repeatDays) {
         this.repeatDays = repeatDays;
     }
 
@@ -202,8 +202,44 @@ public class Alarm {
         AlarmLab.getAlarmLab(context).getAM().setExact(AlarmManager.RTC_WAKEUP,time.getTime(),pi);
     }
 
-    public int getCurSong() { return curSong; }
+    int getCurSong() { return curSong; }
 
     public void setCurSong(int curSong) { this.curSong = curSong; }
+
+    void setRightTime(Context context) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(time);
+        int alarmDay = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+        if (getRepeatMode() != Alarm.REPEAT_ONCE &
+                (!getRepeatDays().contains(alarmDay) | calendar.getTime().getTime() < new Date().getTime())) {
+            boolean needCycle = true;
+            for (int i = alarmDay + 1; i < 8; i++) {
+                if (getRepeatDays().contains(i)) {
+                    alarmDay = i;
+                    needCycle = false;
+                    break;
+                }
+            }
+
+            if (needCycle) {
+                for (int i = 1; i <= alarmDay; i++) {
+                    if (getRepeatDays().contains(i)) {
+                        alarmDay = i;
+                        break;
+                    }
+                }
+            }
+
+            int today = calendar.get(Calendar.DAY_OF_WEEK);
+            if (today == 1) today = 7;
+            else today--;
+
+            if (alarmDay <= today)
+                calendar.add(Calendar.HOUR_OF_DAY, 24 * 7);
+
+            calendar.set(Calendar.DAY_OF_WEEK, alarmDay+1);
+            setTime(calendar.getTime(),context);
+        }
+    }
 
 }

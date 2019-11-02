@@ -5,23 +5,14 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.media.MediaPlayer;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
-import android.telecom.Connection;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import com.incorcadit.alarmer.database.AlarmDBScheme;
 
@@ -41,23 +32,8 @@ public class WakeupService extends Service {
         return null;
     }
 
-    private void createNotificationChannel() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.app_name);
-
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            mChannel = new NotificationChannel("Alarmer", name, importance);
-            mChannel.setDescription("Show alarms");
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(mChannel);
-            mChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-        }
-    }
-
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public void onStart(Intent intent, int startId) {
         mAlarmLab = AlarmLab.getAlarmLab(this);
         UUID uuid = UUID.fromString(intent.getStringExtra(AlarmDBScheme.cols.UUID));
         mAlarm = mAlarmLab.getAlarm(uuid);
@@ -65,7 +41,8 @@ public class WakeupService extends Service {
         if (mAlarm == null) {
             Toast.makeText(this, R.string.error_message,Toast.LENGTH_LONG).show();
             stopSelf();
-            return super.onStartCommand(intent, flags, startId);
+            super.onStart(intent, startId);
+            return;
         }
 
         // Create Intent to Open Activity
@@ -102,7 +79,22 @@ public class WakeupService extends Service {
         //notificationManager.notify(mAlarm.getId().hashCode(), builder.build());
         notificationManager.notify("Alarm",mAlarm.getId().hashCode(),builder.build());
 
-        return super.onStartCommand(intent, flags, startId);
+        super.onStart(intent, startId);
+    }
+
+    private void createNotificationChannel() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.app_name);
+
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            mChannel = new NotificationChannel("Alarmer", name, importance);
+            mChannel.setDescription("Show alarms");
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(mChannel);
+            mChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        }
     }
 
 }

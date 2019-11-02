@@ -24,4 +24,12 @@
     <string name="turn_off">Turn off</string>
     <string name="ten_more_minutes">10 more minutes</string>
     <string name="error_message">An error prevented showing alarm from Alarmer</string>
+    <string name="alarm">Alarm</string>
+    <string name="monday">Mn</string>
+    <string name="tuesday">Tu</string>
+    <string name="wednesday">We</string>
+    <string name="thursday">Th</string>
+    <string name="friday">Fr</string>
+    <string name="saturday">St</string>
+    <string name="sunday">Su</string>
 </resources>

@@ -50,7 +50,7 @@ public class AlarmFragment extends Fragment {
 
     private Resources mRes;
     private AlarmLab mAlarmLab;
-    private Alarm mAlarm;
+    public Alarm mAlarm;
 
     private EditText mLabel;
     private TextView mRepeatType;
@@ -287,36 +287,7 @@ public class AlarmFragment extends Fragment {
     public void onPause() {
         mAlarm.setLabel(mLabel.getText().toString());
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(mAlarm.getTime());
-        calendar.set(Calendar.DAY_OF_WEEK, new Date().getDay() + 1);
-        int alarmDay = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-        if (!(mAlarm.getRepeatMode() == Alarm.REPEAT_ONCE) &
-                (!mAlarm.getRepeatDays().contains(alarmDay) | calendar.getTime().getTime() < new Date().getTime())) {
-            boolean needCycle = true;
-            for (int i = alarmDay + 1; i < 8; i++) {
-                if (mAlarm.getRepeatDays().contains(i)) {
-                    alarmDay = i;
-                    needCycle = false;
-                    break;
-                }
-            }
-
-            if (needCycle) {
-                for (int i = 1; i <= alarmDay; i++) {
-                    if (mAlarm.getRepeatDays().contains(i)) {
-                        alarmDay = i;
-                        break;
-                    }
-                }
-            }
-
-            if (alarmDay <= calendar.get(Calendar.DAY_OF_WEEK) - 1)
-                calendar.add(Calendar.HOUR_OF_DAY, 24 * 7);
-
-            calendar.set(Calendar.DAY_OF_WEEK, alarmDay+1);
-            mAlarm.setTime(calendar.getTime(),getActivity());
-        }
+       mAlarm.setRightTime(getActivity());
 
         mAlarmLab.updateAlarm(mAlarm);
         super.onPause();

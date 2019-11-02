@@ -25,4 +25,12 @@
     <string name="ten_more_minutes">Ещё 10 мин.</string>
     <string name="turn_off">Выключить</string>
     <string name="error_message">Ошибка: не сработал будильник из Alarmer</string>
+    <string name="alarm">Будильник</string>
+    <string name="friday">Пт</string>
+    <string name="monday">Пн</string>
+    <string name="saturday">Сб</string>
+    <string name="sunday">Вс</string>
+    <string name="tuesday">Вт</string>
+    <string name="wednesday">Ср</string>
+    <string name="thursday">Чт</string>
 </resources>
